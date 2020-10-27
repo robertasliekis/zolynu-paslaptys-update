@@ -8,7 +8,7 @@ import InfoWindow from "./components/InfoWindow";
 import { connect } from "react-redux";
 
 import "./App.css";
-//"homepage": "http://https://robertasliekis.github.io/zolynu-paslaptys/",
+//"http://robertasliekis.github.io/zolynu-paslaptys-update/",
 //"homepage": "http://localhost:3000/",
 //
 
