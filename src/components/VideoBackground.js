@@ -44,9 +44,8 @@ export class VideoBackground extends Component {
   }
 
   componentDidMount() {
-    console.log(this.videoRef.current.readyState);
+    //  console.log(this.videoRef.current.readyState);
     //this.videoRef.current.play();
-    console.log("change page video state " + this.videoRef.current.readyState);
 
     this.videoBackgroundRef.current.classList.add("opacity-animation-class");
     this.cornerVideosContainerRef.current.classList.add("corner-videos-animation-class");
@@ -54,8 +53,6 @@ export class VideoBackground extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.page !== prevProps.page) {
-      console.log("change page video state " + this.videoRef.current.readyState);
-
       // this.videoRef.current.currentTime = 0;
       // this.videoRef.current.muted = true;
       // this.videoRef.current.play();

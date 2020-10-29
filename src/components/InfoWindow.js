@@ -719,15 +719,16 @@ export class InfoWindow extends Component {
   };
 
   closeWindow() {
-    if (this.props.plantOpen || this.props.movieOpen) {
+    if (this.props.plantOpen) {
       this.windowContainerRef.current.classList.remove("window-container-animation-class1");
       this.windowContainerRef.current.classList.add("window-container-animation-class2");
       this.imageContainerRef.current.classList.remove("image-container-animation");
       this.blockOverlayRef.current.classList.remove("block-overlay-animation");
-
+    }
+    if (this.props.movieOpen) {
       this.windowMovieContainerRef.current.classList.remove("window-container-animation-class1");
       this.windowMovieContainerRef.current.classList.add("window-container-animation-class2");
-      this.blockOverlayRef.current.classList.remove("block-overlay-animation");
+
       this.blockOverlayMovieRef.current.classList.remove("block-overlay-animation");
       this.movieRef.current.currentTime = 0;
 
@@ -772,8 +773,6 @@ export class InfoWindow extends Component {
       this.closeWindow();
     }
     if (this.props.plantOpen !== prevProps.plantOpen) {
-      console.log(this.props.plantOpen);
-
       if (this.props.plantOpen) {
         this.windowContainerRef.current.classList.remove("window-container-animation-class1");
         this.windowContainerRef.current.classList.remove("window-container-animation-class2");
@@ -794,8 +793,9 @@ export class InfoWindow extends Component {
         this.windowMovieContainerRef.current.classList.add("window-container-animation-class1");
         this.openPageMovieRef.current.currentTime = 0;
         this.openPageMovieRef.current.play();
-        this.movieRef.current.currentTime = 0;
+        this.movieRef.current.muted = false;
         this.movieRef.current.play();
+        this.movieRef.current.currentTime = 0;
 
         this.blockOverlayMovieRef.current.classList.add("block-overlay-animation");
       }
@@ -805,6 +805,10 @@ export class InfoWindow extends Component {
         this.closeWindow();
       }
     }
+  }
+
+  componentDidMount() {
+    // this.movieRef.current.pause();
   }
 
   render() {
@@ -880,12 +884,12 @@ export class InfoWindow extends Component {
         </div>
 
         <div className={"window-movie-container"} ref={this.windowMovieContainerRef}>
-          <video muted ref={this.openPageMovieRef}>
+          <video autoPlay muted ref={this.openPageMovieRef}>
             <source src={openPageMovie} type="video/mp4" />
           </video>
           <div className="window-content">
             <div className="video-screen">
-              <video ref={this.movieRef}>
+              <video autoPlay muted ref={this.movieRef}>
                 <source src={movie} type="video/mp4" />
               </video>
             </div>
