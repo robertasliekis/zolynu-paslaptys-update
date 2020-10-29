@@ -44,17 +44,21 @@ export class VideoBackground extends Component {
   }
 
   componentDidMount() {
-    this.videoRef.current.play();
-    this.videoRef.current.muted = true;
+    console.log(this.videoRef.current.readyState);
+    //this.videoRef.current.play();
+    console.log("change page video state " + this.videoRef.current.readyState);
+
     this.videoBackgroundRef.current.classList.add("opacity-animation-class");
     this.cornerVideosContainerRef.current.classList.add("corner-videos-animation-class");
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.page !== prevProps.page) {
-      this.videoRef.current.currentTime = 0;
-      this.videoRef.current.muted = true;
-      this.videoRef.current.play();
+      console.log("change page video state " + this.videoRef.current.readyState);
+
+      // this.videoRef.current.currentTime = 0;
+      // this.videoRef.current.muted = true;
+      // this.videoRef.current.play();
       this.videoBackgroundRef.current.classList.remove("opacity-animation-class");
       this.videoBackgroundRef.current.classList.add("opacity-animation-class");
 
@@ -80,7 +84,6 @@ export class VideoBackground extends Component {
         case "4":
           this.cornerVideo4Ref.current.play();
           this.plantAudio4Ref.current.play();
-
           break;
         default:
       }
@@ -94,7 +97,7 @@ export class VideoBackground extends Component {
 
     return (
       <div ref={this.videoBackgroundRef} className="video-background-container " key={`containerKey${this.props.page}`}>
-        <video muted ref={this.videoRef} onCanPlay={() => setPlayBack()} key={`videoKey${this.props.page}`}>
+        <video autoPlay muted ref={this.videoRef} onCanPlay={() => setPlayBack()} key={`videoKey${this.props.page}`}>
           <source src={videoIntro[this.props.page]} type="video/mp4" />
         </video>
         <div
@@ -104,7 +107,14 @@ export class VideoBackground extends Component {
           style={{ display: this.props.page > 0 ? "flex" : "none" }}
         >
           <div className="video-box bottom left" style={{ height: this.props.page > 5 ? "69%" : "50%" }}>
-            <video muted type="video/mp4" ref={this.cornerVideo2Ref} className="video-bottom-left" key={`cornerVideo${this.props.page}`}>
+            <video
+              autoPlay
+              muted
+              type="video/mp4"
+              ref={this.cornerVideo2Ref}
+              className="video-bottom-left"
+              key={`cornerVideo${this.props.page}`}
+            >
               <source src={videoPlants[this.props.page]} type="video/mp4" />
             </video>
             <audio ref={this.plantAudio2Ref}>
@@ -112,7 +122,14 @@ export class VideoBackground extends Component {
             </audio>
           </div>
           <div className="video-box bottom right" style={{ height: this.props.page > 5 ? "69%" : "50%" }}>
-            <video muted type="video/mp4" ref={this.cornerVideo4Ref} className="video-bottom-right" key={`cornerVideo${this.props.page}`}>
+            <video
+              autoPlay
+              muted
+              type="video/mp4"
+              ref={this.cornerVideo4Ref}
+              className="video-bottom-right"
+              key={`cornerVideo${this.props.page}`}
+            >
               <source src={videoPlants[this.props.page]} type="video/mp4" />
             </video>
             <audio ref={this.plantAudio4Ref}>
@@ -120,7 +137,14 @@ export class VideoBackground extends Component {
             </audio>
           </div>
           <div className="video-box top left" style={{ height: this.props.page > 5 ? "31%" : "50%" }}>
-            <video muted type="video/mp4" ref={this.cornerVideo1Ref} className="video-top-left" key={`cornerVideo${this.props.page}`}>
+            <video
+              autoPlay
+              muted
+              type="video/mp4"
+              ref={this.cornerVideo1Ref}
+              className="video-top-left"
+              key={`cornerVideo${this.props.page}`}
+            >
               <source src={videoPlants[this.props.page]} type="video/mp4" />
             </video>
             <audio ref={this.plantAudio1Ref}>
@@ -128,7 +152,14 @@ export class VideoBackground extends Component {
             </audio>
           </div>
           <div className="video-box top right" style={{ height: this.props.page > 5 ? "31%" : "50%" }}>
-            <video muted type="video/mp4" ref={this.cornerVideo3Ref} className="video-top-right" key={`cornerVideo${this.props.page}`}>
+            <video
+              autoPlay
+              muted
+              type="video/mp4"
+              ref={this.cornerVideo3Ref}
+              className="video-top-right"
+              key={`cornerVideo${this.props.page}`}
+            >
               <source src={videoPlants[this.props.page]} type="video/mp4" />
             </video>
             <audio ref={this.plantAudio3Ref}>
