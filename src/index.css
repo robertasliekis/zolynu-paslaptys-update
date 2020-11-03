@@ -50,6 +50,7 @@ body {
   font-family: "Courier New", sans-serif;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .App {
@@ -87,6 +88,7 @@ body {
   position: relative;
   background-color: #faeed4;
   overflow: hidden;
+  cursor: none;
 }
 
 .hand-image {

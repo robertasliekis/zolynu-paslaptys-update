@@ -27,7 +27,7 @@ Visą savo gyvenimą dr. E. Šimkūnaitė paskyrė vaistinių augalų, liaudies 
 Amžinai žydėk, Atminimo vyšnia: Knyga apie Eugeniją.- Vilnius: Žuvėdra, 2006. `,
     imageName: "0_simkunaite_",
 
-    textColumns: 5
+    textColumns: 6
   },
   {
     name: "Beržas (Betula)",
@@ -205,7 +205,7 @@ Amžinai žydėk, Atminimo vyšnia: Knyga apie Eugeniją.- Vilnius: Žuvėdra, 2
       Šimkūnaitė, Eugenija. Sveiko gyvenimo receptai.- Vilnius: Žuvėdra, 2007.
       `,
     imageName: "7_spanguole_",
-    textColumns: 4
+    textColumns: 5
   },
   {
     name: "Vaivoras (Vaccinium uliginosum)",
@@ -254,7 +254,7 @@ Amžinai žydėk, Atminimo vyšnia: Knyga apie Eugeniją.- Vilnius: Žuvėdra, 2
       Šimkūnaitė, Eugenija. Sveiko gyvenimo receptai.- Vilnius: Žuvėdra, 2007.
       `,
     imageName: "10_ajeras_",
-    textColumns: 3
+    textColumns: 4
   },
   {
     name: "Dilgelė (Urtica)",
@@ -412,7 +412,7 @@ Amžinai žydėk, Atminimo vyšnia: Knyga apie Eugeniją.- Vilnius: Žuvėdra, 2
       Šimkūnaitė, Eugenija. Gyvenimo receptai.- Vilnius: Žuvėdra, 2001.
       `,
     imageName: "17_kiskiakopustis_",
-    textColumns: 3
+    textColumns: 4
   },
   {
     name: "Šilkažiedė (Lychnis flos-cuculi)",
