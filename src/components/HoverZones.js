@@ -74,14 +74,7 @@ export class HoverZones extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.state.hovered !== prevProps.hovered) {
       if (this.state.hovered) {
-        let hoverTime;
-        if (this.state.hoveredType === "plant") {
-          hoverTime = 1400;
-        } else if (this.state.hoveredType === "corner") {
-          hoverTime = 50;
-        } else {
-          hoverTime = 1000;
-        }
+        let hoverTime = 20;
         this.timer = setTimeout(this.onTimeout, hoverTime);
       } else {
         this.clearTimer();
@@ -109,13 +102,13 @@ export class HoverZones extends Component {
             <div
               className="hover-zone corner-zone"
               id="corner1"
-              onMouseEnter={(event) => this.mouseEnterHandler(event, "corner")}
+              onClick={(event) => this.mouseEnterHandler(event, "corner")}
               onMouseLeave={this.mouseLeaveHandler}
             ></div>
             <div
               className="hover-zone corner-zone"
               id="corner2"
-              onMouseEnter={(event) => this.mouseEnterHandler(event, "corner")}
+              onClick={(event) => this.mouseEnterHandler(event, "corner")}
               onMouseLeave={this.mouseLeaveHandler}
             ></div>
             <div className="plant-zone-wrapper">
@@ -125,7 +118,7 @@ export class HoverZones extends Component {
                     className={`plant-zone plant${number} hover-zone`}
                     id={`plant${plantNumbers[index]}`}
                     key={`plant${number}`}
-                    onMouseEnter={(event) => this.mouseEnterHandler(event, "plant")}
+                    onClick={(event) => this.mouseEnterHandler(event, "plant")}
                     onMouseLeave={this.mouseLeaveHandler}
                   >
                     {/* <h3>{plantNumbers[index]}</h3> */}
@@ -138,30 +131,22 @@ export class HoverZones extends Component {
             <div
               className="hover-zone corner-zone"
               id="corner3"
-              onMouseEnter={(event) => this.mouseEnterHandler(event, "corner")}
+              onClick={(event) => this.mouseEnterHandler(event, "corner")}
               onMouseLeave={this.mouseLeaveHandler}
             ></div>
             <div
               className="hover-zone corner-zone"
               id="corner4"
-              onMouseEnter={(event) => this.mouseEnterHandler(event, "corner")}
+              onClick={(event) => this.mouseEnterHandler(event, "corner")}
               onMouseLeave={this.mouseLeaveHandler}
             ></div>
           </div>
         ) : (
           <div className="person-wrapper">
-            <div
-              className="hover-zone"
-              onMouseEnter={(event) => this.mouseEnterHandler(event, "person")}
-              onMouseLeave={this.mouseLeaveHandler}
-            >
+            <div className="hover-zone" onClick={(event) => this.mouseEnterHandler(event, "person")} onMouseLeave={this.mouseLeaveHandler}>
               <div className="white-box"></div>
             </div>
-            <div
-              className="hover-zone"
-              onMouseEnter={(event) => this.mouseEnterHandler(event, "movie")}
-              onMouseLeave={this.mouseLeaveHandler}
-            >
+            <div className="hover-zone" onClick={(event) => this.mouseEnterHandler(event, "movie")} onMouseLeave={this.mouseLeaveHandler}>
               <div className="white-box"></div>
             </div>
           </div>

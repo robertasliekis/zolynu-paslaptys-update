@@ -651,8 +651,10 @@ export class InfoWindow extends Component {
     this.state = {
       hovered: false,
       hoveredType: "",
+      textColumns: 0,
       textScrollColumn: 1,
-      imageCarouselScaled: false
+      imageCarouselScaled: false,
+      columnWidth: "0px"
     };
     this.openPageVideoRef = React.createRef();
     this.windowContainerRef = React.createRef();
@@ -664,6 +666,8 @@ export class InfoWindow extends Component {
     this.windowMovieContainerRef = React.createRef();
     this.openPageMovieRef = React.createRef();
     this.movieRef = React.createRef();
+    this.scrollColumnParagraphRef = React.createRef();
+    this.textCarouselRef = React.createRef();
   }
   mouseEnterHandler = (event, type) => {
     this.setState({ hovered: true, hoveredType: type });
@@ -697,8 +701,10 @@ export class InfoWindow extends Component {
         this.movieRef.current.pause();
         break;
       case "scroll":
-        let activeColumn = plants[this.props.plantIndex].textColumns;
+        console.log(this.textCarouselRef.current.clientWidth);
 
+        let activeColumn = plants[this.props.plantIndex].textColumns;
+        activeColumn = this.state.textColumns;
         if (this.state.textScrollColumn < activeColumn) {
           let columnCurrent = this.state.textScrollColumn + 1;
           this.setState({
@@ -755,14 +761,8 @@ export class InfoWindow extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.state.hovered !== prevProps.hovered) {
       if (this.state.hovered) {
-        let hoverTime;
-        if (this.state.hoveredType === "close") {
-          hoverTime = 1200;
-        } else if (this.state.hoveredType === "scroll") {
-          hoverTime = 500;
-        } else {
-          hoverTime = 1000;
-        }
+        let hoverTime = 20;
+
         this.timer = setTimeout(this.onTimeout, hoverTime);
       } else {
         this.clearTimer();
@@ -783,6 +783,27 @@ export class InfoWindow extends Component {
         this.blockOverlayRef.current.classList.add("block-overlay-animation");
         this.openPageVideoRef.current.currentTime = 0;
         this.openPageVideoRef.current.play();
+
+        let columnWidth = this.textCarouselRef.current.clientWidth + "px";
+        this.setState({ columnWidth: columnWidth });
+        console.log(this.scrollColumnParagraphRef.current.scrollWidth);
+        console.log("aaaa");
+        console.log(this.textCarouselRef.current.scrollHeight);
+        let textColumns;
+        if (this.scrollColumnParagraphRef.current.scrollWidth === this.textCarouselRef.current.clientWidth) {
+          textColumns = 1;
+        } else {
+          textColumns = Math.ceil(
+            this.scrollColumnParagraphRef.current.scrollWidth / (this.scrollColumnParagraphRef.current.clientWidth + 10)
+          );
+        }
+        // textColumns = textColumns = Math.ceil(this.scrollColumnParagraphRef.current.scrollWidth / this.textCarouselRef.current.clientWidth);
+
+        //console.log(this.scrollColumnParagraphRef.current.clientWidth);
+        //console.log(this.scrollColumnParagraphRef.current.scrollWidth);
+        // console.log("column count");
+        // console.log(textColumns);
+        this.setState({ textColumns: textColumns });
       }
     }
 
@@ -826,7 +847,7 @@ export class InfoWindow extends Component {
                 className={`image-container plant-image-container `}
                 ref={this.imageContainerRef}
                 style={{ transform: this.state.imageCarouselScaled ? "scale(1.5)" : "scale(1)" }}
-                onMouseEnter={(event) => this.mouseEnterHandler(event, "image-carousel-scaled")}
+                onClick={(event) => this.mouseEnterHandler(event, "image-carousel-scaled")}
                 onMouseLeave={this.mouseLeaveHandler}
               >
                 <div className="image-frame"></div>
@@ -852,9 +873,12 @@ export class InfoWindow extends Component {
             <div className="content content-right">
               <div className="text-container">
                 <h1>{plants[this.props.plantIndex].name}</h1>
-                <div className="text-carousel">
+                <div className="text-carousel" ref={this.textCarouselRef}>
                   <p
+                    ref={this.scrollColumnParagraphRef}
+                    key={this.state.columnWidth}
                     style={{
+                      columnWidth: this.state.columnWidth,
                       transform: `translateX(calc(${this.state.textScrollColumn - 1}*(-100% - 4rem)))`
                     }}
                   >
@@ -864,14 +888,14 @@ export class InfoWindow extends Component {
                 <div className={`window-buttons`} ref={this.windowButtonsRef}>
                   <div
                     className="btn btn-close"
-                    onMouseEnter={(event) => this.mouseEnterHandler(event, "close")}
+                    onClick={(event) => this.mouseEnterHandler(event, "close")}
                     onMouseLeave={this.mouseLeaveHandler}
                   >
                     <div className="hover-box hover-box-left"></div>
                   </div>
                   <div
                     className="btn btn-scroll"
-                    onMouseEnter={(event) => this.mouseEnterHandler(event, "scroll")}
+                    onClick={(event) => this.mouseEnterHandler(event, "scroll")}
                     onMouseLeave={this.mouseLeaveHandler}
                   >
                     <div className="hover-box hover-box-right"></div>
@@ -895,23 +919,19 @@ export class InfoWindow extends Component {
             </div>
           </div>
           <div className={`window-buttons window-buttons-movie `}>
-            <div
-              className="btn btn-play"
-              onMouseEnter={(event) => this.mouseEnterHandler(event, "play")}
-              onMouseLeave={this.mouseLeaveHandler}
-            >
+            <div className="btn btn-play" onClick={(event) => this.mouseEnterHandler(event, "play")} onMouseLeave={this.mouseLeaveHandler}>
               <div className="white-box"></div>
             </div>
             <div
               className="btn btn-pause"
-              onMouseEnter={(event) => this.mouseEnterHandler(event, "pause")}
+              onClick={(event) => this.mouseEnterHandler(event, "pause")}
               onMouseLeave={this.mouseLeaveHandler}
             >
               <div className="white-box"></div>
             </div>
             <div
               className="btn btn-close"
-              onMouseEnter={(event) => this.mouseEnterHandler(event, "close")}
+              onClick={(event) => this.mouseEnterHandler(event, "close")}
               onMouseLeave={this.mouseLeaveHandler}
             >
               <div className="white-box"></div>

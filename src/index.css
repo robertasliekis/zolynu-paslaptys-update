@@ -88,7 +88,6 @@ body {
   position: relative;
   background-color: #faeed4;
   overflow: hidden;
-  cursor: none;
 }
 
 .hand-image {
@@ -206,7 +205,6 @@ body {
 .change-page-container .change-page-buttons {
   z-index: 20;
   width: 100%;
-  opacity: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -241,9 +239,8 @@ body {
   border: 2px solid grey;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
-  color: white;
+  color: black;
   font-size: 1rem;
-  background-color: green;
 }
 
 .reset-box-container {
@@ -385,8 +382,8 @@ body {
 }
 
 .block-overlay-animation {
-  -webkit-transition: 8s all ease;
-  transition: 8s all ease;
+  -webkit-transition: 6s all ease;
+  transition: 6s all ease;
   background-color: transparent;
   z-index: -1;
 }
@@ -572,6 +569,7 @@ body {
   margin-bottom: 1rem;
   text-align: center;
   width: 100%;
+  padding-top: 1rem;
 }
 
 .window-container .window-content .content .text-container .text-carousel {
@@ -585,8 +583,6 @@ body {
   width: 100%;
   line-height: 1.3rem;
   height: 100%;
-  -webkit-column-width: 30rem;
-          column-width: 30rem;
   overflow: auto;
   -webkit-column-gap: 4rem;
           column-gap: 4rem;
@@ -644,14 +640,14 @@ body {
   width: 50%;
   height: 17rem;
   font-size: 2rem;
-  padding-bottom: 11%;
+  padding-bottom: 5%;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
 
 .window-container .window-buttons .btn .hover-box {
-  height: 31%;
+  height: 39%;
   width: 65%;
   -webkit-transition: 0.5s all ease;
   transition: 0.5s all ease;
@@ -659,12 +655,12 @@ body {
 
 .window-container .window-buttons .btn .hover-box-left {
   width: 44%;
-  margin-left: 14%;
+  margin-left: 13%;
 }
 
 .window-container .window-buttons .btn .hover-box-right {
   width: 87%;
-  margin-left: 3%;
+  margin-left: 0%;
 }
 
 .window-container .window-buttons .btn:hover .hover-box {
@@ -808,8 +804,8 @@ body {
   -webkit-transition: 0.5s all ease;
   transition: 0.5s all ease;
   width: 80%;
-  height: 35%;
-  margin-top: 9%;
+  height: 40%;
+  margin-top: 0%;
 }
 
 .window-movie-container .window-buttons-movie .btn:hover .white-box {
@@ -1087,14 +1083,14 @@ body {
 }
 
 .hover-zones-container .person-wrapper .hover-zone:nth-child(1) .white-box {
-  margin-top: 14%;
-  margin-left: 18%;
+  margin-top: 12%;
+  margin-left: 19%;
   width: 59%;
-  height: 63%;
+  height: 62%;
 }
 
 .hover-zones-container .person-wrapper .hover-zone:nth-child(2) .white-box {
-  margin-top: 25%;
+  margin-top: 20%;
   margin-left: 9%;
   width: 85%;
   height: 44%;
@@ -1111,8 +1107,8 @@ body {
 .hover-zones-animation-class {
   -webkit-animation-duration: 0.5s;
           animation-duration: 0.5s;
-  -webkit-animation-delay: 9s;
-          animation-delay: 9s;
+  -webkit-animation-delay: 14s;
+          animation-delay: 14s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-name: hover-zones-animation;
